@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .link{
+        @apply hover:underline cursor-pointer;
+    }
+
+    .btn{
+        @apply bg-[#f8f9fa] rounded-md  text-sm 
+        ring-gray-200 text-gray-800 hover:ring-1 p-3 focus:outline-none active:ring-gray-300 hover:shadow-md;
+    }
+
+    .lang{
+        @apply text-blue-800 cursor-pointer hover:underline
+    }
+}
+
