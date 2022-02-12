@@ -1,8 +1,21 @@
 import { MicrophoneIcon, SearchIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useRef } from 'react'
 
 function SearchForm() {
+     
+    const inputRef = useRef(null)  
+    const router = useRouter()
+
+    const formHandler = (e) => {
+        e.preventDefault()
+        const term = inputRef.current.value
+        
+        if(!term) return;
+        router.push(`/search?term=${term}`)
+    }
+
   return (
     <main>
         <form className='flex flex-col items-center mt-44 flex-grow'>
@@ -10,13 +23,13 @@ function SearchForm() {
 
             <div className='flex w-full mt-5 hover:shadow-md focus-within:shadow-md max-w-md rounded-full border border-gray-200 px-5 py-3 items-center sm:max-w-xl lg:max-w-2xl '>
                 <SearchIcon className='h-5 mr-3 text-gray-500'/>
-                <input type="text" className='focus:outline-none flex-grow' />
+                <input type="text" className='focus:outline-none flex-grow' ref={inputRef} />
                 <MicrophoneIcon className='h-5 cursor-pointer'/>
             </div>
 
             <div className='flex space-x-4 mt-4'>
-                <button className='btn'>Google Search</button>
-                <button className='btn'>I'm Feeling Lucky</button>
+                <button className='btn' onClick={formHandler}>Google Search</button>
+                <button className='btn' onClick={formHandler}>I'm Feeling Lucky</button>
             </div>
 
             <div className='flex space-x-3 text-sm mt-5 items-center w-full justify-center '>
@@ -29,7 +42,7 @@ function SearchForm() {
                 <p className='lang'>मराठी</p>
                 <p className='lang'>ਪੰਜਾਬੀ</p>
             </div>
-
+            
         </form>
     </main>
   )
