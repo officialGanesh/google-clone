@@ -7,13 +7,14 @@ function SearchForm() {
      
     const inputRef = useRef(null)  
     const router = useRouter()
-
+    
     const formHandler = (e) => {
         e.preventDefault()
         const term = inputRef.current.value
         
         if(!term) return;
         router.push(`/search?term=${term}`)
+        
     }
 
   return (
